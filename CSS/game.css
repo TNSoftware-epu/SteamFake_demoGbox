@@ -1,0 +1,390 @@
+/* 
+   File: game.css
+   Mô tả: CSS styling cho popup giới thiệu game
+   Ghi chú: Tất cả các comment tiếng Việt giải thích từng phần
+*/
+
+/* ====================================
+   1. MODAL BACKDROP (Nền mờ)
+   ==================================== */
+/* 
+   .game-modal là container chính của popup
+   - position: fixed; Để modal ở vị trí cố định (không cuộn theo trang)
+   - top: 0; left: 0; Đặt modal ở góc trên trái
+   - width: 100%; height: 100%; Chiếm toàn bộ màn hình
+   - display: none; Ban đầu ẩn đi
+*/
+.game-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none; /* Ban đầu ẩn */
+    z-index: 1000; /* Hiển thị trên cùng */
+}
+
+/* Khi modal active (hiển thị), dùng class này từ JavaScript */
+.game-modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 
+   .game-modal-overlay là nền mờ (lớp nằm dưới)
+   - position: absolute; Nằm trong .game-modal
+   - background: rgba(0, 0, 0, 0.5); Màu đen với độ trong suốt 50%
+   - width: 100%; height: 100%; Chiếm toàn bộ kích thước modal
+*/
+.game-modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+/* ====================================
+   2. NỘI DUNG POP-UP CHÍNH
+   ==================================== */
+/* 
+   .game-modal-content là container chứa nội dung popup
+   - position: relative; Để z-index hoạt động và nằm trên overlay
+   - background: #1b2838; Màu nền tối (giống Steam)
+   - border: 2px solid #a8b4d5; Đường viền nhạt
+   - max-width: 1200px; Chiều rộng tối đa
+   - max-height: 90vh; Chiều cao tối đa (90% viewport height)
+   - overflow: auto; Cuộn nội dung nếu quá dài
+*/
+.game-modal-content {
+    position: relative;
+    background: #1b2838;
+    border: 2px solid #a8b4d5;
+    max-width: 1200px;
+    max-height: 90vh;
+    overflow: auto;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+}
+
+/* 
+   Nút X để đóng popup
+   - position: absolute; Nằm tại góc trên phải
+   - top: 10px; right: 10px; Cách góc 10px
+   - font-size: 32px; Kích thước chữ X to
+*/
+.game-modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: #a8b4d5;
+    font-size: 32px;
+    cursor: pointer;
+    z-index: 10;
+    transition: color 0.2s;
+}
+
+/* Khi hover vào nút X, màu thay đổi */
+.game-modal-close:hover {
+    color: #ffffff;
+}
+
+/* ====================================
+   3. LAYOUT: PHẦN TRÁI VÀ PHẢI
+   ==================================== */
+/* 
+   .game-modal-container chia popup thành 2 cột
+   - display: flex; Dùng flexbox để sắp xếp
+   - gap: 30px; Khoảng cách giữa 2 phần
+*/
+.game-modal-container {
+    display: flex;
+    gap: 30px;
+    padding: 40px;
+}
+
+/* 
+   PHẦN TRÁI: Hình ảnh game
+   - flex: 1; Chiếm bằng không gian phía bên trái
+*/
+.game-modal-left {
+    flex: 1;
+    min-width: 300px;
+}
+
+/* 
+   Hình ảnh game chính
+   - width: 100%; Rộng bằng phần tử cha
+   - height: auto; Tự động điều chỉnh chiều cao
+   - border: 2px solid #5a6c7d; Đường viền
+   - margin-bottom: 20px; Khoảng cách tới phần video
+*/
+.game-modal-image {
+    width: 100%;
+    height: auto;
+    border: 2px solid #5a6c7d;
+    margin-bottom: 20px;
+    display: block;
+}
+
+/* Video trailer */
+.game-modal-video {
+    border: 2px solid #5a6c7d;
+}
+
+/* 
+   PHẦN PHẢI: Thông tin game
+   - flex: 1; Chiếm không gian bằng phần trái
+   - color: #a8b4d5; Màu chữ nhạt (giống Steam)
+*/
+.game-modal-right {
+    flex: 1;
+    color: #a8b4d5;
+}
+
+/* ====================================
+   4. TIÊU ĐỀ GAME
+   ==================================== */
+/* 
+   Tên game
+   - font-size: 28px; Chữ lớn
+   - color: #ffffff; Chữ trắng
+   - margin-bottom: 15px; Khoảng cách xuống dưới
+*/
+.game-modal-title {
+    font-size: 28px;
+    color: #ffffff;
+    margin: 0 0 15px 0;
+    font-weight: bold;
+}
+
+/* 
+   Mô tả game
+   - line-height: 1.6; Khoảng cách dòng (giúp dễ đọc)
+   - margin-bottom: 30px; Khoảng cách tới phần tiếp theo
+*/
+.game-modal-description {
+    line-height: 1.6;
+    margin-bottom: 30px;
+    color: #a8b4d5;
+}
+
+/* ====================================
+   5. PHẦN THÔNG TIN (Đánh giá, Ngày phát hành, v.v.)
+   ==================================== */
+/* 
+   Container cho tất cả thông tin
+   - border-top: 1px solid #5a6c7d; Đường phân cách
+   - border-bottom: 1px solid #5a6c7d;
+   - padding: 20px 0; Khoảng cách trên dưới
+   - margin-bottom: 30px; Khoảng cách tới tags
+*/
+.game-modal-info {
+    border-top: 1px solid #5a6c7d;
+    border-bottom: 1px solid #5a6c7d;
+    padding: 20px 0;
+    margin-bottom: 30px;
+}
+
+/* 
+   Mỗi dòng thông tin (Ngày phát hành, Nhà phát triển, v.v.)
+   - display: flex; Dùng flexbox
+   - justify-content: space-between; Chữ trái và phải
+   - margin-bottom: 12px; Khoảng cách giữa các dòng
+*/
+.game-modal-info-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+/* 
+   Phần đánh giá (giống .game-modal-info-item)
+   - margin-bottom: 12px;
+*/
+.game-modal-rating {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+/* 
+   Nhãn thông tin (NGÀY PHÁT HÀNH:, NHÀ PHÁT TRIỂN:, v.v.)
+   - color: #a8b4d5; Màu nhạt (để phân biệt với giá trị)
+   - min-width: 200px; Đảm bảo có đủ không gian
+*/
+.info-label,
+.rating-label {
+    color: #a8b4d5;
+    min-width: 200px;
+    flex-shrink: 0;
+}
+
+/* 
+   Giá trị thông tin (12 Thg11, 2024, GIANTS Software, v.v.)
+   - color: #ffffff; Chữ trắng
+*/
+.info-value,
+.rating-value {
+    color: #ffffff;
+}
+
+/* ====================================
+   6. TAGS (Nhãn/Thể loại game)
+   ==================================== */
+/* 
+   Container cho tags section
+   - margin-bottom: 30px;
+*/
+.game-modal-tags {
+    margin-bottom: 30px;
+}
+
+/* 
+   Nhãn "Nhãn phổ biến được người dùng gán cho sản phẩm này:"
+   - color: #a8b4d5; Màu nhạt
+   - margin-bottom: 10px; Khoảng cách tới tags
+*/
+.tags-label {
+    color: #a8b4d5;
+    margin-bottom: 10px;
+    margin-top: 0;
+}
+
+/* 
+   Container chứa các tag individual
+   - display: flex; Xếp hàng ngang
+   - flex-wrap: wrap; Xuống hàng khi hết chỗ
+   - gap: 10px; Khoảng cách giữa tags
+*/
+.tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* 
+   Mỗi tag đơn lẻ (Mô phỏng, Nông trại, v.v.)
+   - background: #2a3f5f; Nền xanh đậm
+   - color: #a8b4d5; Chữ nhạt
+   - padding: 5px 12px; Khoảng cách trong
+   - border: 1px solid #5a6c7d; Đường viền
+   - border-radius: 3px; Góc tròn nhẹ
+   - cursor: pointer; Con trỏ tay
+*/
+.game-tag {
+    background: #2a3f5f;
+    color: #a8b4d5;
+    padding: 5px 12px;
+    border: 1px solid #5a6c7d;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 13px;
+}
+
+/* Khi hover vào tag */
+.game-tag:hover {
+    background: #3a5f8f;
+    color: #ffffff;
+    border-color: #7a9cbd;
+}
+
+/* ====================================
+   7. NÚT HÀNH ĐỘNG (MUA NGAY, WISHLIST)
+   ==================================== */
+/* 
+   Container chứa nút
+   - display: flex; Xếp hàng ngang
+   - gap: 10px; Khoảng cách giữa nút
+*/
+.game-modal-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+/* 
+   Định dạng chung cho nút
+   - padding: 10px 20px; Khoảng cách trong
+   - border: none; Không có đường viền
+   - border-radius: 3px; Góc tròn nhẹ
+   - cursor: pointer; Con trỏ tay
+   - font-size: 14px; Kích thước chữ
+   - transition: all 0.3s; Hiệu ứng mượt
+*/
+.btn-buy,
+.btn-wishlist {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s;
+    flex: 1;
+}
+
+/* 
+   Nút "Mua ngay"
+   - background: #1B7EC4; Xanh nước biển
+   - color: #ffffff; Chữ trắng
+*/
+.btn-buy {
+    background: #1B7EC4;
+    color: #ffffff;
+}
+
+.btn-buy:hover {
+    background: #1A5F8C;
+}
+
+/* 
+   Nút "Thêm vào danh sách mong muốn"
+   - background: #5a6c7d; Xám
+   - color: #ffffff; Chữ trắng
+*/
+.btn-wishlist {
+    background: #5a6c7d;
+    color: #ffffff;
+}
+
+.btn-wishlist:hover {
+    background: #6a7c8d;
+}
+
+/* ====================================
+   8. RESPONSIVE - TỐI ƯU CHO MÀN HÌNH NHỎ
+   ==================================== */
+/* 
+   Khi màn hình nhỏ hơn 768px (tablet/mobile)
+   - Chuyển layout từ ngang (flex) sang dọc (flex-direction: column)
+*/
+@media (max-width: 768px) {
+    .game-modal-container {
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+    }
+    
+    .game-modal-title {
+        font-size: 22px;
+    }
+    
+    .game-modal-info-item,
+    .game-modal-rating {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .info-label,
+    .rating-label {
+        min-width: auto;
+    }
+}

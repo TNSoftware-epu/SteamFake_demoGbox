@@ -1,0 +1,34 @@
+/* =========================================
+   TRANG ĐĂNG NHẬP
+========================================= */
+body.login-page {
+    background-color: var(--login-bg);
+    background-image: none; 
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-box { width: 400px; padding: 20px; text-align: center; }
+
+/* Kích thước logo to cho riêng trang Đăng nhập */
+.login-logo-img { 
+    height: 70px; 
+    margin-bottom: 30px; 
+    width: auto; 
+    border-radius: 5px; 
+    box-shadow: 0 0 15px rgba(102, 192, 244, 0.2); 
+}
+
+.login-page .form-group { margin-bottom: 20px; text-align: left; }
+.login-page .form-group label { font-size: 13px; color: #8f98a0; margin-bottom: 8px; display: block; text-transform: uppercase; }
+.login-page .label-row { display: flex; justify-content: space-between; align-items: center; }
+.login-page .form-group input { width: 100%; padding: 12px; background-color: var(--login-input); border: none; color: white; border-radius: 2px; outline: none; }
+.login-page .forgot-link, .login-page .signup-link { color: var(--steam-blue); text-decoration: underline; font-size: 12px; }
+.login-page .options-row { display: flex; justify-content: space-between; font-size: 13px; color: #8f98a0; margin-bottom: 30px; }
+.login-page .button-wrapper { display: flex; justify-content: center; margin-bottom: 30px; }
+.login-page .btn-go { width: 120px; padding: 12px; background-color: white; color: black; border: none; font-weight: bold; font-size: 16px; cursor: pointer; border-radius: 2px; }
+.login-page .or-separator { position: relative; border-bottom: 1px solid #333; margin-bottom: 30px; }
+.login-page .or-separator span { position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: var(--login-bg); padding: 0 10px; color: #555; font-size: 14px; }
+.login-page .btn-social { width: 100%; padding: 12px; background: transparent; border: 1px solid #444; color: white; margin-bottom: 10px; cursor: pointer; transition: 0.3s; }
+.login-page .btn-social:hover { border-color: white; }

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Gbox Community - Hoạt động</title>
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="../CSS/community.css">
+    
+    <script>
+        if (!sessionStorage.getItem('user')) { window.location.href = 'index.html'; }
+    </script>
+</head>
+<body>
+    <header class="top-header">
+        <div class="container">
+            <a href="store.html" class="logo-link">
+                <img src="../logo.jpg" alt="Gbox Logo" class="logo-img">
+            </a>
+            <div class="user-actions">
+                <a href="#" onclick="logout()">[ Đăng xuất ]</a>
+            </div>
+        </div>
+    </header>
+
+    <nav class="main-nav">
+        <div class="container">
+            <a href="store.html">STORE</a> | 
+            <a href="community.html" class="active">COMMUNITY</a> | 
+            <a href="support.html">SUPPORT</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="community-intro">
+            <h2>Hoạt động Cộng đồng</h2>
+            <p>Cộng đồng và nội dung chính thức cho tất cả trò chơi và phần mềm trên Gbox.</p>
+        </div>
+
+        <div class="community-layout">
+            <div class="community-main-box">
+                <div class="recent-tabs">
+                    <span class="active-tab">TRÒ CHƠI GẦN ĐÂY</span>
+                    <span>TRUNG TÂM ĐÃ XEM GẦN ĐÂY</span>
+                </div>
+                <div style="padding: 20px; color: #8F98A0;">
+                    (Khu vực hiển thị nội dung hoạt động...)
+                </div>
+            </div>
+
+            <aside class="community-sidebar">
+                <div class="search-group">
+                    <label>TÌM TRUNG TÂM</label>
+                    <input type="text" placeholder="Tìm sản phẩm">
+                </div>
+                <div class="search-group">
+                    <label>TÌM NGƯỜI</label>
+                    <input type="text" placeholder="Tìm bạn bè">
+                </div>
+            </aside>
+        </div>
+
+        <div class="filter-bar">
+            <a href="#">TẤT CẢ</a>
+            <a href="#">Ảnh chụp</a>
+            <a href="#">Hình ảnh</a>
+            <a href="#">Phát trực tiếp</a>
+            <a href="#">Video</a>
+            <a href="#">Tin tức</a>
+            <a href="#">Hướng dẫn</a>
+        </div>
+
+        <div class="post-section">
+            <h4>Đề xuất</h4>
+            <div class="post-placeholder">
+                [Hình ảnh bài đăng]
+            </div>
+        </div>
+    </main>
+    
+    <footer class="site-footer">
+        <div class="container">
+            <p>Slogan: niềm vui của bn là đồng tiền của chúng tôi</p>
+        </div>
+    </footer>
+
+    <script>
+        function logout() { sessionStorage.removeItem('user'); window.location.href = 'index.html'; }
+    </script>
+</body>
+</html>

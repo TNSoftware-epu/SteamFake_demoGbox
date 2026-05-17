@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Gbox - Tạo tài khoản</title>
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="../CSS/signup.css">
+</head>
+<body class="signup-page">
+    <div class="signup-container">
+        <h1 class="signup-title">TẠO TÀI KHOẢN CỦA BẠN</h1>
+        
+        <form id="signup-form">
+            <!-- Email Input -->
+            <div class="form-group">
+                <label>Địa chỉ email</label>
+                <input type="email" id="email" placeholder="" required>
+            </div>
+
+            <!-- Confirm Email Input -->
+            <div class="form-group">
+                <label>Xác nhận địa chỉ email của bạn</label>
+                <input type="email" id="confirm-email" placeholder="" required>
+            </div>
+
+            <!-- Password Input -->
+            <div class="form-group">
+                <label>Mật khẩu</label>
+                <input type="password" id="password" placeholder="Nhập mật khẩu (tối thiểu 8 ký tự, chữ in hoa, ký tự đặc biệt)" required>
+                <small class="password-requirement">Yêu cầu: 8 ký tự, chữ in hoa (A-Z), ký tự đặc biệt (!@#$%^&*)</small>
+            </div>
+
+            <!-- Confirm Password Input -->
+            <div class="form-group">
+                <label>Xác nhận mật khẩu</label>
+                <input type="password" id="confirm-password" placeholder="Nhập lại mật khẩu" required>
+            </div>
+
+           <!-- Country Dropdown -->
+            <div class="form-group">
+                <label>Quốc gia cử trú</label>
+                <select id="country" required>
+                    <option value="">Chọn quốc gia...</option>
+                    <option value="vn" selected>Việt Nam</option>
+                    <option value="us">Hoa Kỳ</option>
+                    <option value="jp">Nhật Bản</option>
+                    <option value="cn">Trung Quốc</option>
+                    <option value="sg">Singapore</option>
+                    <option value="th">Thái Lan</option>
+                    <option value="kr">Hàn Quốc</option>
+                </select>
+            </div>
+
+            <!-- hCaptcha -->
+            <div class="form-group captcha-group">
+                <div class="captcha-box">
+                    <input type="checkbox" id="captcha-check">
+                    <span>Tôi là con người</span>
+                    <div class="captcha-logo">
+                        <div class="captcha-icon">⚡</div>
+                        <div class="captcha-text">
+                            <div>hCaptcha</div>
+                            <small>Đảm bảo & Kiểm lần</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+            <!-- Terms & Conditions -->
+            <div class="form-group terms-group">
+                <label class="terms-checkbox">
+                    <input type="checkbox" id="terms-check" required>
+                    <span>Tôi 13 tuổi hoặc lớn hơn và đồng ý với điều khoản trong <strong>Thỏa thuận người đăng ký Steam</strong> và <strong>Chính sách bảo mật của Valve</strong>.</span>
+                </label>
+            </div>
+
+            <!-- Continue Button -->
+            <div class="button-wrapper">
+                <button type="submit" class="btn-continue">Tiếp tục</button>
+            </div>
+        </form>
+
+        <p class="login-link">
+            Đã có tài khoản? <a href="index.html">Đăng nhập</a>
+        </p>
+    </div>
+
+    <script>
+        // Kiểm tra mật khẩu có đáp ứng yêu cầu không
+        function validatePassword(password) {
+            const hasMinLength = password.length >= 8;
+            const hasUpperCase = /[A-Z]/.test(password);
+            const hasSpecialChar = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password);
+            
+            return hasMinLength && hasUpperCase && hasSpecialChar;
+        }
+
+        // Lấy danh sách tài khoản từ localStorage
+        function getAccounts() {
+            const accounts = localStorage.getItem('gbox_accounts');
+            return accounts ? JSON.parse(accounts) : [];
+        }
+
+        // Lưu danh sách tài khoản vào localStorage
+        function saveAccounts(accounts) {
+            localStorage.setItem('gbox_accounts', JSON.stringify(accounts));
+        }
+
+        // Kiểm tra email đã tồn tại chưa
+        function emailExists(email) {
+            const accounts = getAccounts();
+            return accounts.some(acc => acc.email === email);
+        }
+
+        document.getElementById('signup-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const confirmEmail = document.getElementById('confirm-email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            const captcha = document.getElementById('captcha-check').checked;
+            const terms = document.getElementById('terms-check').checked;
+
+            if (email !== confirmEmail) {
+                alert('Email không khớp!');
+                return;
+            }
+
+            if (emailExists(email)) {
+                alert('Email này đã được đăng ký! Vui lòng sử dụng email khác.');
+                return;
+            }
+
+            if (!validatePassword(password)) {
+                alert('Mật khẩu không đáp ứng yêu cầu!\n- Tối thiểu 8 ký tự\n- Phải có chữ in hoa (A-Z)\n- Phải có ký tự đặc biệt (!@#$%^&*)');
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                alert('Mật khẩu không khớp!');
+                return;
+            }
+
+            if (!captcha) {
+                alert('Vui lòng xác nhận bạn là con người!');
+                return;
+            }
+
+            if (!terms) {
+                alert('Vui lòng chấp nhận điều khoản dịch vụ!');
+                return;
+            }
+
+            // Lưu tài khoản vào localStorage
+            const accounts = getAccounts();
+            accounts.push({
+                email: email,
+                password: password,
+                createdAt: new Date().toISOString()
+            });
+            saveAccounts(accounts);
+
+            alert('Tài khoản đã được tạo thành công!');
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,224 @@
+/* =========================================
+   TRANG ĐĂNG KÝ
+========================================= */
+body.signup-page {
+    background-color: var(--login-bg);
+    background-image: none; 
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 40px 0;
+}
+
+.signup-container { 
+    width: 400px; 
+    padding: 40px; 
+    background-color: var(--steam-panel);
+    border-radius: 4px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+}
+
+.signup-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 30px;
+    text-align: left;
+    letter-spacing: 1px;
+}
+
+.signup-page .form-group { 
+    margin-bottom: 20px; 
+    text-align: left; 
+}
+
+.signup-page .form-group label { 
+    font-size: 13px; 
+    color: #8f98a0; 
+    margin-bottom: 8px; 
+    display: block; 
+    font-weight: 500;
+}
+
+.signup-page .form-group input[type="email"],
+.signup-page .form-group input[type="password"],
+.signup-page .form-group select { 
+    width: 100%; 
+    padding: 12px; 
+    background-color: var(--login-input); 
+    border: 1px solid #2a4a6a;
+    color: white; 
+    border-radius: 2px; 
+    outline: none;
+    font-size: 14px;
+    transition: border-color 0.3s;
+}
+
+.signup-page .form-group input[type="email"]:focus,
+.signup-page .form-group input[type="password"]:focus,
+.signup-page .form-group select:focus { 
+    border-color: var(--steam-blue);
+}
+
+.signup-page .form-group select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238f98a0' stroke-width='2'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 20px;
+    padding-right: 40px;
+}
+
+.signup-page .form-group select option {
+    background-color: var(--login-input);
+    color: white;
+}
+
+/* hCaptcha Styling */
+.captcha-group {
+    margin-bottom: 25px;
+}
+
+.captcha-box {
+    border: 1px solid #2a4a6a;
+    border-radius: 2px;
+    padding: 12px;
+    background-color: var(--login-input);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.captcha-box input[type="checkbox"] {
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+    cursor: pointer;
+    accent-color: var(--steam-blue);
+}
+
+.captcha-box span {
+    color: white;
+    font-weight: 500;
+    flex: 1;
+}
+
+.captcha-logo {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: auto;
+}
+
+.captcha-icon {
+    font-size: 20px;
+    color: var(--steam-blue);
+}
+
+.captcha-text {
+    font-size: 11px;
+    text-align: right;
+    color: #8f98a0;
+}
+
+.captcha-text div:first-child {
+    font-weight: 600;
+    color: #a7b3ba;
+}
+
+.captcha-text small {
+    font-size: 9px;
+    color: #6d7a82;
+}
+
+/* Terms & Conditions */
+.terms-group {
+    margin-bottom: 30px;
+}
+
+.terms-checkbox {
+    display: flex;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 13px;
+    color: #c7d5e0;
+    line-height: 1.4;
+}
+
+.terms-checkbox input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    min-width: 18px;
+    margin-top: 2px;
+    cursor: pointer;
+    accent-color: var(--steam-blue);
+}
+
+.terms-checkbox strong {
+    color: #a7b3ba;
+    text-decoration: none;
+}
+
+.terms-checkbox a {
+    color: var(--steam-blue);
+    text-decoration: none;
+}
+
+.terms-checkbox a:hover {
+    text-decoration: underline;
+}
+
+/* Continue Button */
+.button-wrapper { 
+    display: flex; 
+    justify-content: center; 
+    margin-bottom: 20px;
+}
+
+.btn-continue { 
+    width: 150px; 
+    padding: 12px; 
+    background-color: var(--steam-blue); 
+    color: white; 
+    border: none; 
+    font-weight: bold; 
+    font-size: 14px; 
+    cursor: pointer; 
+    border-radius: 2px;
+    transition: background-color 0.3s;
+}
+
+.btn-continue:hover {
+    background-color: #5eb3e6;
+}
+
+.btn-continue:active {
+    background-color: #5ba8db;
+}
+
+/* Login Link */
+.login-link {
+    text-align: center;
+    font-size: 13px;
+    color: #8f98a0;
+    margin-top: 20px;
+}
+
+.login-link a {
+    color: var(--steam-blue);
+    text-decoration: none;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+
+/* Password Requirement Text */
+.password-requirement {
+    display: block;
+    font-size: 11px;
+    color: #8f98a0;
+    margin-top: 6px;
+    margin-left: 0;
+}

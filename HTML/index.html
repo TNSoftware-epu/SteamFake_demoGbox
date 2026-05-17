@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Gbox - Login</title>
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="../CSS/login.css">
+</head>
+<body class="login-page">
+    <div class="login-box">
+        <img src="../logo.jpg" alt="Gbox Logo" class="login-logo-img">
+        
+        <div id="login-form">
+            <div class="form-group">
+                <label>Username or Email</label>
+                <input type="text" id="username" placeholder="Nhập tên đăng nhập...">
+            </div>
+
+            <div class="form-group">
+                <div class="label-row">
+                    <label>Password</label>
+                    <a href="#" class="forgot-link">Forgot your password?</a>
+                </div>
+                <input type="password" id="password" placeholder="Nhập mật khẩu...">
+            </div>
+
+            <div class="options-row">
+                <label class="checkbox-container">
+                    <input type="checkbox"> Keep me logged in
+                </label>
+                <a href="signup.html" class="signup-link">Sign up</a>
+            </div>
+
+            <div class="button-wrapper">
+                <button onclick="handleLogin()" class="btn-go">Go</button>
+            </div>
+
+            <div class="or-separator">
+                <span>or</span>
+            </div>
+
+            <div class="social-buttons">
+                <button class="btn-social">Connect with Google</button>
+                <button class="btn-social">Connect with Facebook</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Nếu người dùng đã đăng nhập từ trước, tự động văng vào trang Store
+        if (sessionStorage.getItem('user')) {
+            window.location.href = 'store.html';
+        }
+
+        // Lấy danh sách tài khoản từ localStorage
+        function getAccounts() {
+            const accounts = localStorage.getItem('gbox_accounts');
+            return accounts ? JSON.parse(accounts) : [];
+        }
+
+        function handleLogin() {
+            const emailInput = document.getElementById('username').value;
+            const passwordInput = document.getElementById('password').value;
+
+            if (!emailInput || !passwordInput) {
+                alert("Vui lòng điền email và mật khẩu!");
+                return;
+            }
+
+            // Kiểm tra thông tin đăng nhập từ localStorage
+            const accounts = getAccounts();
+            const account = accounts.find(acc => acc.email === emailInput && acc.password === passwordInput);
+
+            if (account) {
+                // Đăng nhập thành công
+                sessionStorage.setItem('user', emailInput);
+                alert("Đăng nhập thành công!");
+                window.location.href = 'store.html';
+            } else {
+                alert("Email hoặc mật khẩu không chính xác!");
+            }
+        }
+    </script>
+</body>
+</html>

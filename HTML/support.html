@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Gbox Support - Bạn cần giúp gì?</title>
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="../CSS/support.css">
+    
+    <script>
+        if (!sessionStorage.getItem('user')) { window.location.href = 'index.html'; }
+    </script>
+</head>
+<body>
+    <header class="top-header">
+        <div class="container">
+            <a href="store.html" class="logo-link">
+                <img src="../logo.jpg" alt="Gbox Logo" class="logo-img">
+            </a>
+            <div class="user-actions">
+                <a href="#" onclick="logout()">[ Đăng xuất ]</a>
+            </div>
+        </div>
+    </header>
+
+    <nav class="main-nav">
+        <div class="container">
+            <a href="store.html">STORE</a> | 
+            <a href="community.html">COMMUNITY</a> | 
+            <a href="support.html" class="active">SUPPORT</a>
+        </div>
+    </nav>
+
+    <main class="container support-wrapper">
+        <h1 class="support-title">BẠN CẦN CHÚNG TÔI GIÚP GÌ?</h1>
+        
+        <div class="support-search-container">
+            <input type="text" class="support-input" placeholder="Nhập vấn đề bạn gặp phải... (ví dụ: mất mật khẩu, lỗi thanh toán)">
+        </div>
+
+        <div class="support-grid">
+            <div class="support-card">
+                <h3>VẤN ĐỀ TÀI KHOẢN</h3>
+                <p>(Quên mật khẩu, bảo mật...)</p>
+            </div>
+            <div class="support-card">
+                <h3>THANH TOÁN</h3>
+                <p>(Hoàn tiền, lỗi giao dịch...)</p>
+            </div>
+            <div class="support-card">
+                <h3>LỖI TRÒ CHƠI</h3>
+                <p>(Không mở được game, lỗi lag...)</p>
+            </div>
+            <div class="support-card">
+                <h3>LIÊN HỆ TRỰC TIẾP</h3>
+                <p>(Gửi yêu cầu hỗ trợ)</p>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="site-footer">
+        <div class="container">
+            <p>Niềm vui của bạn là đồng tiền của chúng tôi</p>
+        </div>
+    </footer>
+
+    <script>
+        function logout() { sessionStorage.removeItem('user'); window.location.href = 'index.html'; }
+    </script>
+</body>
+</html>

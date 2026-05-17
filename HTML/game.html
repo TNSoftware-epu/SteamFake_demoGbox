@@ -1,0 +1,98 @@
+<!-- 
+    File: game.html
+    Mô tả: Khung mẫu pop-up giới thiệu chi tiết về game
+    - Chứa cấu trúc HTML cho popup modal
+    - Được hiển thị khi người dùng bấm vào một game card
+-->
+
+<!-- Pop-up Modal (ban đầu ẩn) -->
+<div id="gameModal" class="game-modal">
+    <!-- Overlay (nền mờ) - Bấm vào đây để đóng popup -->
+    <div class="game-modal-overlay"></div>
+    
+    <!-- Nội dung popup chính -->
+    <div class="game-modal-content">
+        <!-- Nút X để đóng popup -->
+        <button class="game-modal-close">&times;</button>
+        
+        <!-- Container chính: chia thành 2 phần (left và right) -->
+        <div class="game-modal-container">
+            
+            <!-- PHẦN TRÁI: Hình ảnh và video game -->
+            <div class="game-modal-left">
+                <!-- Hình ảnh game lớn -->
+                <img id="gameImage" src="" alt="Game Image" class="game-modal-image">
+                
+                <!-- Video trailer (nếu có) - có thể bỏ nếu không cần -->
+                <div id="gameVideo" class="game-modal-video">
+                    <video width="100%" controls>
+                        <source id="gameVideoSource" src="" type="video/mp4">
+                        Trình duyệt của bạn không hỗ trợ video tag.
+                    </video>
+                </div>
+            </div>
+            
+            <!-- PHẦN PHẢI: Thông tin chi tiết game -->
+            <div class="game-modal-right">
+                <!-- Tên game -->
+                <h1 id="gameName" class="game-modal-title">Tên Game</h1>
+                
+                <!-- Mô tả ngắn về game -->
+                <p id="gameDescription" class="game-modal-description">
+                    Mô tả game sẽ hiển thị ở đây
+                </p>
+                
+                <!-- Phần đánh giá và thông tin game -->
+                <div class="game-modal-info">
+                    
+                    <!-- Đánh giá gần đây -->
+                    <div class="game-modal-rating">
+                        <span class="rating-label">ĐÁNH GIÁ GẦN ĐÂY:</span>
+                        <span id="gameRecentRating" class="rating-value">Rất tích cực (1.212)</span>
+                    </div>
+                    
+                    <!-- Đánh giá chung -->
+                    <div class="game-modal-rating">
+                        <span class="rating-label">ĐÁNH GIÁ CHUNG:</span>
+                        <span id="gameOverallRating" class="rating-value">Rất tích cực (34.609)</span>
+                    </div>
+                    
+                    <!-- Ngày phát hành -->
+                    <div class="game-modal-info-item">
+                        <span class="info-label">NGÀY PHÁT HÀNH:</span>
+                        <span id="gameReleaseDate" class="info-value">12 Thg11, 2024</span>
+                    </div>
+                    
+                    <!-- Nhà phát triển -->
+                    <div class="game-modal-info-item">
+                        <span class="info-label">NHÀ PHÁT TRIỂN:</span>
+                        <span id="gameDeveloper" class="info-value">Tên nhà phát triển</span>
+                    </div>
+                    
+                    <!-- Nhà phát hành -->
+                    <div class="game-modal-info-item">
+                        <span class="info-label">NHÀ PHÁT HÀNH:</span>
+                        <span id="gamePublisher" class="info-value">Tên nhà phát hành</span>
+                    </div>
+                    
+                </div>
+                
+                <!-- Tags/Thể loại game -->
+                <div class="game-modal-tags">
+                    <p class="tags-label">Nhãn phổ biến được người dùng gán cho sản phẩm này:</p>
+                    <div id="gameTags" class="tags-container">
+                        <!-- Tags sẽ được thêm vào bằng JavaScript -->
+                    </div>
+                </div>
+                
+                <!-- Nút hành động (tùy chọn) -->
+                <div class="game-modal-actions">
+                    <button class="btn-buy">Mua ngay</button>
+                    <button class="btn-wishlist">Thêm vào danh sách mong muốn</button>
+                </div>
+                
+            </div>
+            
+        </div>
+    </div>
+</div>

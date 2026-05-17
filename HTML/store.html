@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Gbox - Store</title>
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="../CSS/store.css">
+    <link rel="stylesheet" href="../CSS/game.css">
+    
+    <script>
+        if (!sessionStorage.getItem('user')) {
+            window.location.href = 'index.html'; // Đuổi về trang login
+        }
+    </script>
+</head>
+<body>
+
+    <header class="top-header">
+        <div class="container">
+            <a href="store.html" class="logo-link">
+                <img src="../logo.jpg" alt="Gbox Logo" class="logo-img">
+            </a>
+            
+            <div class="user-actions">
+                Chào, <span id="display-user" style="color: white; font-weight: bold;"></span>
+                <a href="#" onclick="logout()">[ Đăng xuất ]</a>
+            </div>
+        </div>
+    </header>
+
+    <nav class="main-nav">
+        <div class="container">
+            <a href="store.html" class="active">STORE</a> | 
+            <a href="community.html">COMMUNITY</a> | 
+            <a href="support.html">SUPPORT</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <!-- Slideshow Banner - Chứa các slide ảnh game -->
+        <div class="banner-slideshow">
+            <!-- Container chứa các slide - dùng để overflow hidden -->
+            <div class="slideshow-container">
+                <!-- Slide 1: Counter-Strike 2 -->
+                <div class="slide">
+                    <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/730/header.jpg" alt="Counter-Strike 2">
+                    <div class="banner-title">Counter-Strike 2</div>
+                </div>
+                <!-- Slide 2: Dota 2 -->
+                <div class="slide">
+                    <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/570/header.jpg" alt="Dota 2">
+                    <div class="banner-title">Dota 2</div>
+                </div>
+                <!-- Slide 3: PUBG -->
+                <div class="slide">
+                    <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/578080/header.jpg" alt="PUBG">
+                    <div class="banner-title">PUBG: BATTLEGROUNDS</div>
+                </div>
+                <!-- Slide 4: Black Myth Wukong -->
+                <div class="slide">
+                    <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2358720/header.jpg" alt="Black Myth: Wukong">
+                    <div class="banner-title">Black Myth: Wukong - Đang thịnh hành</div>
+                </div>
+                <!-- Slide 5: GTA V -->
+                <div class="slide">
+                    <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/271590/header.jpg" alt="GTA V">
+                    <div class="banner-title">Grand Theft Auto V</div>
+                </div>
+                <!-- Slide 6: Elden Ring -->
+                <div class="slide">
+                    <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1245620/header.jpg" alt="Elden Ring">
+                    <div class="banner-title">ELDEN RING</div>
+                </div>
+            </div>
+            
+            <!-- Nút điều hướng: Trái -->
+            <button class="slide-button slide-prev" onclick="changeSlide(-1)">&#10094;</button>
+            <!-- Nút điều hướng: Phải -->
+            <button class="slide-button slide-next" onclick="changeSlide(1)">&#10095;</button>
+            
+            <!-- Chỉ báo slide (dots) - hiển thị slide hiện tại -->
+            <div class="slide-dots">
+                <span class="dot active" onclick="currentSlide(0)"></span>
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+                <span class="dot" onclick="currentSlide(4)"></span>
+                <span class="dot" onclick="currentSlide(5)"></span>
+            </div>
+        </div>
+
+        <div class="content-wrapper">
+            <aside class="sidebar">
+                <h3>Thể loại</h3>
+                <ul>
+                    <li><a href="#">Hành động</a></li>
+                    <li><a href="#">Đua xe</a></li>
+                    <li><a href="#">Thẻ bài</a></li>
+                    <li><a href="#">Trang điểm</a></li>
+                    <li><a href="#">Thú cưng</a></li>
+                    <li><a href="#">Kinh dị</a></li>
+                    <li><a href="#">Sinh tồn</a></li>
+                </ul>
+            </aside>
+
+            <section class="game-section">
+                <h3 class="section-title">Chỗ chọn game</h3>
+                
+                <div class="game-grid">
+                    <div class="game-card">
+                        <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/730/header.jpg" alt="CS2">
+                        <div class="game-info">
+                            <div class="game-name">Counter-Strike 2</div>
+                            <div class="game-price">Miễn phí</div>
+                        </div>
+                    </div>
+                    <div class="game-card">
+                        <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/570/header.jpg" alt="Dota 2">
+                        <div class="game-info">
+                            <div class="game-name">Dota 2</div>
+                            <div class="game-price">Miễn phí</div>
+                        </div>
+                    </div>
+                    <div class="game-card">
+                        <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/578080/header.jpg" alt="PUBG">
+                        <div class="game-info">
+                            <div class="game-name">PUBG: BATTLEGROUNDS</div>
+                            <div class="game-price">Miễn phí</div>
+                        </div>
+                    </div>
+                    <div class="game-card">
+                        <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2358720/header.jpg" alt="Wukong">
+                        <div class="game-info">
+                            <div class="game-name">Black Myth: Wukong</div>
+                            <div class="game-price">1.299.000₫</div>
+                        </div>
+                    </div>
+                    <div class="game-card">
+                        <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/271590/header.jpg" alt="GTA V">
+                        <div class="game-info">
+                            <div class="game-name">Grand Theft Auto V</div>
+                            <div class="game-price">450.000₫</div>
+                        </div>
+                    </div>
+                    <div class="game-card">
+                        <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1245620/header.jpg" alt="Elden Ring">
+                        <div class="game-info">
+                            <div class="game-name">ELDEN RING</div>
+                            <div class="game-price">1.390.000₫</div>
+                        </div>
+                    </div>
+                    <div class="game-card">
+                        <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1086940/header.jpg" alt="Baldur's Gate 3">
+                        <div class="game-info">
+                            <div class="game-name">Baldur's Gate 3</div>
+                            <div class="game-price">990.000₫</div>
+                        </div>
+                    </div>
+                    <div class="game-card">
+                        <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1091500/header.jpg" alt="Cyberpunk 2077">
+                        <div class="game-info">
+                            <div class="game-name">Cyberpunk 2077</div>
+                            <div class="game-price">990.000₫</div>
+                        </div>
+                    </div>
+                    <div class="game-card">
+                        <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/413150/header.jpg" alt="Stardew Valley">
+                        <div class="game-info">
+                            <div class="game-name">Stardew Valley</div>
+                            <div class="game-price">165.000₫</div>
+                        </div>
+                    </div>
+                    <div class="game-card">
+                        <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/550/header.jpg" alt="L4D2">
+                        <div class="game-info">
+                            <div class="game-name">Left 4 Dead 2</div>
+                            <div class="game-price">142.000₫</div>
+                        </div>
+                    </div>
+                    <div class="game-card">
+                        <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/292030/header.jpg" alt="The Witcher 3">
+                        <div class="game-info">
+                            <div class="game-name">The Witcher 3: Wild Hunt</div>
+                            <div class="game-price">649.000₫</div>
+                        </div>
+                    </div>
+                    <div class="game-card">
+                        <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/374320/header.jpg" alt="Dark Souls III">
+                        <div class="game-info">
+                            <div class="game-name">Dark Souls III</div>
+                            <div class="game-price">699.000₫</div>
+                        </div>
+                    </div>
+                    <div class="game-card">
+                        <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/39320/header.jpg" alt="Minecraft">
+                        <div class="game-info">
+                            <div class="game-name">Minecraft</div>
+                            <div class="game-price">159.000₫</div>
+                        </div>
+                    </div>
+                    <div class="game-card">
+                        <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/105600/header.jpg" alt="Terraria">
+                        <div class="game-info">
+                            <div class="game-name">Terraria</div>
+                            <div class="game-price">149.000₫</div>
+                        </div>
+                    </div>
+                    <div class="game-card">
+                        <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/620/header.jpg" alt="Portal 2">
+                        <div class="game-info">
+                            <div class="game-name">Portal 2</div>
+                            <div class="game-price">139.000₫</div>
+                        </div>
+                    </div>
+                    <div class="game-card">
+                        <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/440/header.jpg" alt="Team Fortress 2">
+                        <div class="game-info">
+                            <div class="game-name">Team Fortress 2</div>
+                            <div class="game-price">Miễn phí</div>
+                        </div>
+                    </div>
+                    <div class="game-card">
+                        <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/252490/header.jpg" alt="Rust">
+                        <div class="game-info">
+                            <div class="game-name">Rust</div>
+                            <div class="game-price">599.000₫</div>
+                        </div>
+                    </div>
+                    <div class="game-card">
+                        <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/892970/header.jpg" alt="Valheim">
+                        <div class="game-info">
+                            <div class="game-name">Valheim</div>
+                            <div class="game-price">249.000₫</div>
+                        </div>
+                    </div>
+                    <div class="game-card">
+                        <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/990080/header.jpg" alt="Hogwarts Legacy">
+                        <div class="game-info">
+                            <div class="game-name">Hogwarts Legacy</div>
+                            <div class="game-price">1.490.000₫</div>
+                        </div>
+                    </div>
+                    <div class="game-card">
+                        <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/582010/header.jpg" alt="Monster Hunter World">
+                        <div class="game-info">
+                            <div class="game-name">Monster Hunter: World</div>
+                            <div class="game-price">829.000₫</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>Slogan: niềm vui của bn là đồng tiền của chúng tôi</p>
+        </div>
+    </footer>
+
+    <!-- Game Modal Popup (từ game.html) -->
+    <div id="gameModal" class="game-modal">
+        <!-- Overlay (nền mờ) - Bấm vào đây để đóng popup -->
+        <div class="game-modal-overlay"></div>
+        
+        <!-- Nội dung popup chính -->
+        <div class="game-modal-content">
+            <!-- Nút X để đóng popup -->
+            <button class="game-modal-close">&times;</button>
+            
+            <!-- Container chính: chia thành 2 phần (left và right) -->
+            <div class="game-modal-container">
+                
+                <!-- PHẦN TRÁI: Hình ảnh game -->
+                <div class="game-modal-left">
+                    <!-- Hình ảnh game lớn -->
+                    <img id="gameImage" src="" alt="Game Image" class="game-modal-image">
+                    
+                    <!-- Video trailer (nếu có) -->
+                    <div id="gameVideo" class="game-modal-video">
+                        <video width="100%" controls>
+                            <source id="gameVideoSource" src="" type="video/mp4">
+                            Trình duyệt của bạn không hỗ trợ video tag.
+                        </video>
+                    </div>
+                </div>
+                
+                <!-- PHẦN PHẢI: Thông tin chi tiết game -->
+                <div class="game-modal-right">
+                    <!-- Tên game -->
+                    <h1 id="gameName" class="game-modal-title">Tên Game</h1>
+                    
+                    <!-- Mô tả ngắn về game -->
+                    <p id="gameDescription" class="game-modal-description">
+                        Mô tả game sẽ hiển thị ở đây
+                    </p>
+                    
+                    <!-- Phần đánh giá và thông tin game -->
+                    <div class="game-modal-info">
+                        
+                        <!-- Đánh giá gần đây -->
+                        <div class="game-modal-rating">
+                            <span class="rating-label">ĐÁNH GIÁ GẦN ĐÂY:</span>
+                            <span id="gameRecentRating" class="rating-value">Rất tích cực (1.212)</span>
+                        </div>
+                        
+                        <!-- Đánh giá chung -->
+                        <div class="game-modal-rating">
+                            <span class="rating-label">ĐÁNH GIÁ CHUNG:</span>
+                            <span id="gameOverallRating" class="rating-value">Rất tích cực (34.609)</span>
+                        </div>
+                        
+                        <!-- Ngày phát hành -->
+                        <div class="game-modal-info-item">
+                            <span class="info-label">NGÀY PHÁT HÀNH:</span>
+                            <span id="gameReleaseDate" class="info-value">12 Thg11, 2024</span>
+                        </div>
+                        
+                        <!-- Nhà phát triển -->
+                        <div class="game-modal-info-item">
+                            <span class="info-label">NHÀ PHÁT TRIỂN:</span>
+                            <span id="gameDeveloper" class="info-value">Tên nhà phát triển</span>
+                        </div>
+                        
+                        <!-- Nhà phát hành -->
+                        <div class="game-modal-info-item">
+                            <span class="info-label">NHÀ PHÁT HÀNH:</span>
+                            <span id="gamePublisher" class="info-value">Tên nhà phát hành</span>
+                        </div>
+                        
+                    </div>
+                    
+                    <!-- Tags/Thể loại game -->
+                    <div class="game-modal-tags">
+                        <p class="tags-label">Nhãn phổ biến được người dùng gán cho sản phẩm này:</p>
+                        <div id="gameTags" class="tags-container">
+                            <!-- Tags sẽ được thêm vào bằng JavaScript -->
+                        </div>
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('display-user').innerText = sessionStorage.getItem('user');
+        
+        function logout() {
+            sessionStorage.removeItem('user'); // Xóa bộ nhớ
+            window.location.href = 'index.html'; // Quay lại form login
+        }
+    </script>
+    
+    <!-- Script cho game modal popup -->
+    <script src="../JS/game.js"></script>
+    
+    <!-- Script cho slideshow banner -->
+    <script src="../JS/store.js"></script>
+</body>
+</html>

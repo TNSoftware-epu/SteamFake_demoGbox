@@ -1,0 +1,9 @@
+.support-wrapper { padding: 50px 0; text-align: center; }
+.support-title { font-size: 32px; font-weight: 300; color: white; margin-bottom: 40px; }
+.support-search-container { max-width: 700px; margin: 0 auto 40px; }
+.support-input { width: 100%; padding: 16px; background: rgba(0,0,0,0.4); border: 1px solid var(--steam-blue); border-radius: 3px; color: white; font-size: 16px; outline: none; }
+.support-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 700px; margin: 0 auto; }
+.support-card { background: var(--steam-panel); padding: 30px; text-align: left; border-radius: 3px; cursor: pointer; border: 1px solid transparent; transition: 0.2s; }
+.support-card:hover { border-color: var(--steam-blue); background: #223447; }
+.support-card h3 { font-size: 16px; color: white; margin-bottom: 5px; }
+.support-card p { font-size: 13px; color: #8F98A0; }
